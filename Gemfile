@@ -93,6 +93,9 @@ gem 'webpush'
 gem 'json-ld', '~> 2.2'
 gem 'rdf-normalize', '~> 0.3'
 
+gem 'librato-rails', '~> 2.1'
+gem 'librato-sidekiq', git: 'https://github.com/patf/librato-sidekiq.git'
+
 group :development, :test do
   gem 'fabrication', '~> 2.20'
   gem 'fuubar', '~> 2.2'
