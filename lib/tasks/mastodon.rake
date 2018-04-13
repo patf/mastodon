@@ -512,8 +512,13 @@ namespace :mastodon do
       MediaAttachment.where.not(remote_url: '').where.not(file_file_name: nil).where('created_at < ?', time_ago).find_each do |media|
         next unless media.file.exists?
 
-        media.file.destroy
-        media.save
+        begin
+          media.file.destroy
+          media.save
+        rescue Fog::Storage::OpenStack::NotFound
+          puts "Error deleting attachment #{media.id}: File not found"
+          next
+        end
       end
     end
 
